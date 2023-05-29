@@ -1,0 +1,336 @@
+/* //////////////////////////////////// */
+/* ////////// Header Section ////////// */
+/* //////////////////////////////////// */
+.app-header {
+  width: 100%;
+  padding: 1.6rem;
+  /* box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1); */
+  background: var(--col-ui);
+  top: 0;
+}
+.wrapper{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.header-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 300;
+  text-transform: capitalize;
+  /* background: linear-gradient(to right, var(--col-g-1), var(--col-g-2));
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; */
+  color: #aaa;
+}
+
+.profile {
+  min-height: 4rem;
+  min-width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--col-ui-2);
+}
+
+.user {
+  font-size: 2.4rem;
+  color: var(--col-g-2);
+}
+
+/* //////////////////////////////////// */
+/* ////////// Main Body ////////// */
+/* //////////////////////////////////// */
+.main-body {
+  padding: 0 1.6rem 13rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.sec {
+  padding: 1.6rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.sec-title {
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--col-ui);
+  text-transform: capitalize;
+}
+
+.sec-cta {
+  margin-top: 3.2rem;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.cta div {
+  display: flex;
+  gap: 1.6rem;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  height: 3.7rem;
+  border-radius: 0.7rem;
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  font-size: 1.6rem;
+  padding: 0 1.6rem;
+  background: var(--col-ui);
+  box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.15);
+}
+
+input[type="number"] {
+  width: 10rem;
+}
+
+input[type="text"],
+input[type="number"] {
+  background: rgba(255, 255, 255, 0.4);
+}
+::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+}
+
+input[type="button"]:active {
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.15);
+}
+
+.bank-box {
+  background: linear-gradient(to bottom, #62d4e2, #71bcf9);
+}
+
+.spend-box {
+  background: linear-gradient(to bottom, #ffdd62, #ffba71);
+}
+
+.earn-box {
+  background: linear-gradient(to bottom, #a9e057, #74d985);
+}
+
+/* //////////////////////////// */
+.category-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 3.7rem;
+}
+
+.category {
+  position: absolute;
+  cursor: pointer;
+  /* box-shadow: none; */
+  z-index: 1;
+}
+
+.cat-list {
+  position: absolute;
+  top: 0;
+  border-radius: 0.7rem;
+  padding-top: 3.7rem;
+  max-height: 0;
+  transition: all 0.3s ease;
+  z-index: 0;
+}
+
+.cat-list ul {
+  padding: 1.6rem;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.7rem;
+  gap: 1.6rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #74d985;
+  overflow-y: scroll;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.list-open .cat-list {
+  max-height: 26rem;
+  background: var(--col-ui);
+  box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.15);
+}
+
+.list-open .cat-list ul {
+  opacity: 1;
+  pointer-events: all;
+}
+/* //////////////////////////// */
+
+/* //////////////////////////////////// */
+/* ////////// Footer Section ////////// */
+/* //////////////////////////////////// */
+.footer {
+  width: 36rem;
+  position: fixed;
+  bottom: 0;
+  background: var(--col-ui-2);
+}
+
+.footer::before {
+  content: "";
+  height: 2rem;
+  width: 100%;
+  background: var(--col-ui);
+  position: absolute;
+  top: -2rem;
+}
+
+.footer::after {
+  content: "";
+  height: 4rem;
+  width: 100%;
+  background: linear-gradient(to top, #fff, #ffffff00);
+  position: absolute;
+  pointer-events: none;
+  top: -6rem;
+}
+
+.navigation {
+  height: 6rem;
+  width: 100%;
+}
+
+.navigation ul {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3rem;
+}
+
+.f-list {
+  position: relative;
+  height: 100%;
+  width: 6rem;
+}
+
+.nav-link:is(:link, :visited) {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-icon {
+  color: #111;
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+
+  z-index: 5;
+}
+
+.text-f {
+  color: #111;
+  position: absolute;
+  top: 50%;
+  transform: translateY(1rem);
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 5;
+}
+
+.active .footer-icon {
+  top: 0;
+  color: var(--col-ui-2);
+}
+
+.active .text-f {
+  opacity: 1;
+  transform: translateY(0.4rem);
+}
+
+/* //////////////////////////////////// */
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 3rem;
+  height: 6rem;
+  width: 6rem;
+  background: var(--col-ui);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+  z-index: 5;
+}
+
+.in-cir {
+  height: 5rem;
+  width: 5rem;
+  background: linear-gradient(to bottom, var(--col-g-1), var(--col-g-2));
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.in-left {
+  position: absolute;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: var(--col-ui-2);
+  top: 50%;
+  left: 0.99rem;
+  transform: translateX(-100%);
+  border-top-right-radius: 100%;
+  box-shadow: 0.1rem -1.9rem 0 0 var(--col-ui);
+}
+
+.in-right {
+  position: absolute;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: var(--col-ui-2);
+  top: 50%;
+  right: 0.99rem;
+  transform: translateX(100%);
+  border-top-left-radius: 100%;
+  box-shadow: -0.1rem -1.9rem 0 0 var(--col-ui);
+}
+
+/* //////////////////////////////////// */
+
+.p-1 {
+  transform: translate(calc(100% + 2rem), -50%);
+}
+.p-2 {
+  transform: translate(calc(200% + 4rem), -50%);
+}
+.p-3 {
+  transform: translate(calc(300% + 6rem), -50%);
+}

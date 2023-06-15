@@ -1,0 +1,104 @@
+<%- include("partials/header") %>
+    <!-- /////////////// Section Header /////////////// -->
+    <header class="header">
+      <div class="hCon">
+        <h1 class="hTitle">good morning.</h1>
+        <div class="user-img-box">
+          <ion-icon name="person-outline" class="user-icon"></ion-icon>
+        </div>
+      </div>
+    </header>
+
+    <!-- /////////////// Section Body /////////////// -->
+    <section class="body">
+      <div class="bEarn-con bCon">
+        <h2 class="bCon-title">earning</h2>
+        <div class="bForm-con">
+          <form action="/transaction" method="POST" class="bForm">
+            <div class="bForm-box">
+              <input type="hidden" name="new[action]" value="Earning">
+              <input
+                type="number"
+                name="new[amount]"
+                id=""
+                placeholder="amount"
+                required />
+
+              <div class="category-box">
+                <input
+                  type="text"
+                  name="new[category]"
+                  id=""
+                  placeholder="category"
+                  required
+                  class="cat-search" />
+
+                <div class="cat-list-box">
+                  <ul class="cat-list"></ul>
+                </div>
+              </div>
+            </div>
+            <div class="bForm-box">
+              <input type="submit" name="new[paymentMethod]" value="cash" />
+              <input type="submit" name="new[paymentMethod]" value="online" />
+              <input type="submit" name="new[paymentMethod]" value="from bank" />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="bSpend-con bCon">
+        <h2 class="bCon-title">spending</h2>
+        <div class="bForm-con">
+          <form action="" class="bForm">
+            <div class="bForm-box">
+              <input
+                type="number"
+                name=""
+                id=""
+                placeholder="amount"
+                required />
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="category"
+                required />
+            </div>
+            <div class="bForm-box">
+              <input type="button" value="cash" />
+              <input type="button" value="online" />
+              <input type="button" value="from bank" />
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="bBank-con bCon">
+        <h2 class="bCon-title">banking</h2>
+        <div class="bForm-con">
+          <form action="" class="bForm">
+            <div class="bForm-box">
+              <input
+                type="number"
+                name=""
+                id=""
+                placeholder="amount"
+                required />
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder="select account"
+                required />
+            </div>
+            <div class="bForm-box">
+              <input type="button" value="withdraw" />
+              <input type="button" value="diposit" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+<%- include("partials/footer") %>

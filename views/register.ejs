@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IMS - Inventory Management System</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/register_style.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/ripple.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Passion+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+
+  <script src="js/jquery.min.js"></script>
+<script src="js/register.js"></script>
+    <!-- Loader -->
+  <style>
+    #loaderBG{
+      height: 100vh;
+      width: 100vw;
+      z-index: 2;
+      background-color: #dae0e6;
+    }
+    #loader {
+        z-index: 5;
+        border: 12px solid #f3f3f3;
+        border-radius: 50%;
+        /* border-top: 12px solid #0f1419; */
+        border-top: 12px solid lightseagreen;
+        width: 70px;
+        height: 70px;
+        animation: spin 1s linear infinite;
+    }
+      
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+      
+    .center {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+  </style>
+</head>
+<body>
+    <div id="loaderBG"></div>
+    <div id="loader" class="center"></div>
+
+	<div class="img-style">
+	<div class="container">
+   <div class="row">
+   	<div class="col-lg-8 col-md-10 col-sm-12 col-centered" style="margin-top: 60px;">
+   		<div class="box">
+   			<div class="text-center mb-3">
+ 
+   				<span class="dis">Pocket Money</span>
+   			</div>	
+   			<!-- Login form start -->
+   			<div id="first">
+        <form action="#" method="POST">
+        	<div class="form-group">
+        		<input class="form-control" type="email" name="log_email" placeholder="Email Address" value="" required>
+        	</div>        	
+        	<div class="form-group">
+        		<input class="form-control" type="password" name="log_password" placeholder="Password">
+        	</div>        	
+        	<div class="form-group">
+        		<input class="myBtn" type="submit" name="login_button" value="Login">
+        		 <p class="error"></p>
+        	</div>
+        	<div class="text-center mb-2">
+        	<a href="#" id="signup" class="signup">Need an account? Register here!</a>
+        	</div>
+        </form>
+        </div>
+         <!-- Register form start -->
+         <div id="second">
+        <form action="#" method="POST">
+		<div class="form-group">
+		<input class="form-control" type="text" name="reg_fname" placeholder="First Name" value="" required>
+	    <p class="error"></p>
+		</div>
+		<div class="form-group"> 
+		<input class="form-control" type="text" name="reg_lname" placeholder="Last Name" value="" required>
+		 <p class="error"></p>
+		</div>		
+		<div class="form-group"> 
+		<input class="form-control" type="email" name="reg_email" placeholder="Email" value="" required>
+		</div>		
+		<div class="form-group"> 
+		<input class="form-control" type="email" name="reg_email2" placeholder="Confirm Email" value="" required>
+		 <p class="error"></p>
+		</div>		
+		<div class="form-group"> 
+		<input class="form-control" type="password" name="reg_password" placeholder="Password" required>
+		</div>		
+		<div class="form-group"> 
+		<input class="form-control" type="password" name="reg_password2" placeholder="Confirm Password" required>
+		  <p class="error"></p>
+		</div>
+        <div class="form-group">        
+<!--         <button class="myBtn">SUBMIT ➝</button> -->
+        <input class="myBtn" type="submit" name="register_button" value="Register">
+        <p></p>
+        </div>
+        <div class="text-center mb-2">
+        	<a href="#" id="signin" class="signin">Already have an account? Login here!</a>
+        	</div>
+        </form>
+        </div>
+    </div>
+
+   </div>
+</div>
+</div>
+</div>
+<!--scripts-->
+<script>
+document.onreadystatechange = function() {
+    if (document.readyState !== "complete") {
+        document.querySelector(
+          "body").style.visibility = "hidden";
+        document.querySelector(
+          "#loader").style.visibility = "visible";
+        document.querySelector(
+          "#loaderBG").style.visibility = "visible";
+    } else {
+        document.querySelector(
+          "#loader").style.display = "none";
+        document.querySelector(
+          "#loaderBG").style.display = "none";
+        document.querySelector(
+          "body").style.visibility = "visible";
+    }
+};
+</script>
+<script src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>

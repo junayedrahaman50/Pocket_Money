@@ -31,4 +31,5 @@ body {
   background: #222;
   height: 100vh;
   background: var(--col-ui);
+  width: 36rem;
 }

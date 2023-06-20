@@ -1,104 +1,111 @@
-<%- include("partials/header") %>
-    <!-- /////////////// Section Header /////////////// -->
-    <header class="header">
-      <div class="hCon">
-        <h1 class="hTitle">good morning.</h1>
-        <div class="user-img-box">
-          <ion-icon name="person-outline" class="user-icon"></ion-icon>
-        </div>
-      </div>
-    </header>
+<% var a = 0;
+ income.forEach((inc) => { 
+ a += inc.amount; 
+ }); 
+ var b = 0; 
+ expense.forEach((exp) => {
+ b += exp.amount; 
+ }); %>
 
-    <!-- /////////////// Section Body /////////////// -->
-    <section class="body">
-      <div class="bEarn-con bCon">
-        <h2 class="bCon-title">earning</h2>
-        <div class="bForm-con">
-          <form action="/transaction" method="POST" class="bForm">
-            <div class="bForm-box">
-              <input type="hidden" name="new[action]" value="Earning">
-              <input
-                type="number"
-                name="new[amount]"
-                id=""
-                placeholder="amount"
-                required />
 
-              <div class="category-box">
-                <input
-                  type="text"
-                  name="new[category]"
-                  id=""
-                  placeholder="category"
-                  required
-                  class="cat-search" />
 
-                <div class="cat-list-box">
-                  <ul class="cat-list"></ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Junayed Rahaman">
+    <title>Pocket Money | Day to day budgeting application</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+*{
+    font-family: 'Poppins', sans-serif;
+}
+.box{
+    background-color: rgba(255, 255, 255, .8);
+    border-radius:5px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+}
+body{
+    background: url('/images/Pattern.png') top left repeat, #dae0e6;
+}
+.col-centered{
+  float: none !important;
+  margin: 0 auto !important;
+}
+.btn-primary{
+    font-size: 16px;
+    background-color: dodgerblue !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;border-radius: 3px !important;
+}
+.btn-primary:hover{
+    background-color: rgb(10, 86, 162) !important; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+}
+
+    </style>
+    <script src="js/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-centered">
+                    <div class="box text-dark text-center">
+                        <h2>Welcome Junayed Rahaman</h2>
+                        <p class="lead my-3">Current Balance: <%= a - b %></p>
+                        <a class="btn btn-primary btn-lg" href="/transaction/new"><i class="fa-solid fa-square-plus"></i> Add Transaction</a>
+                    </div>
+                    <% for(let i=transactions.length - 1;i>=0;i--) { %>
+                    <div class="card my-3">
+                        <h5 class="card-header text-center"><%= transactions[i].action %> <%= transactions[i].amount %></h5>
+                            <div class="card-body">
+                                <h5 class="card-title"><%= transactions[i].title %></h5>
+                            <p class="card-text"><%= transactions[i].description.toString().substring(0,50) + "..." %></p>
+
+
+                            <a href="/transaction/<%=transactions[i]._id%>" class="btn btn-primary btn-lg"><i class="fa-solid fa-circle-info"></i> More Info</a>
+
+
+    <span class="text-muted" style="float: right;font-size: 14px;margin-top: 20px;">
+        <%= transactions[i].created.toString().substring(0,10); %>
+     </span>
+                            </div>
+                    </div> 
+                    <% }; %>   
                 </div>
-              </div>
             </div>
-            <div class="bForm-box">
-              <input type="submit" name="new[paymentMethod]" value="cash" />
-              <input type="submit" name="new[paymentMethod]" value="online" />
-              <input type="submit" name="new[paymentMethod]" value="from bank" />
-            </div>
-          </form>
         </div>
-      </div>
+    </body>
+<script>
+// Select all elements with the class name 'myClass'
+const elements = document.querySelectorAll('.card-header');
 
-      <div class="bSpend-con bCon">
-        <h2 class="bCon-title">spending</h2>
-        <div class="bForm-con">
-          <form action="" class="bForm">
-            <div class="bForm-box">
-              <input
-                type="number"
-                name=""
-                id=""
-                placeholder="amount"
-                required />
-              <input
-                type="text"
-                name=""
-                id=""
-                placeholder="category"
-                required />
-            </div>
-            <div class="bForm-box">
-              <input type="button" value="cash" />
-              <input type="button" value="online" />
-              <input type="button" value="from bank" />
-            </div>
-          </form>
-        </div>
-      </div>
+// Iterate through each element
+elements.forEach(element => {
+  // Get the textContent of the element
+  const text = element.textContent;
 
-      <div class="bBank-con bCon">
-        <h2 class="bCon-title">banking</h2>
-        <div class="bForm-con">
-          <form action="" class="bForm">
-            <div class="bForm-box">
-              <input
-                type="number"
-                name=""
-                id=""
-                placeholder="amount"
-                required />
-              <input
-                type="text"
-                name=""
-                id=""
-                placeholder="select account"
-                required />
-            </div>
-            <div class="bForm-box">
-              <input type="button" value="withdraw" />
-              <input type="button" value="diposit" />
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
+  // Check if the first character is '+'
+  if (text.charAt(0) === '+') {
+    // Add 'text-success' class
+    element.classList.add('text-success');
+  } else {
+    // Add 'text-danger' class
+    element.classList.add('text-danger');
+  }
+});
 
-<%- include("partials/footer") %>
+
+</script>
+    <script src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</body>
+</html>

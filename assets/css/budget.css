@@ -1,0 +1,93 @@
+.budgetPage {
+  width: 36rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 1.2rem;
+  position: relative;
+}
+
+.budgetPage .category-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.budgetPage .category-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.category-box .category {
+  position: relative;
+  display: flex;
+  padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+  height: 6rem;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--col-ui);
+}
+
+.category input {
+  border: none;
+  outline: none;
+  line-height: 1;
+  width: 4rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  background: transparent;
+}
+
+.category .btnBox {
+  display: flex;
+  position: absolute;
+  right: 1.2rem;
+  /* display: none; */
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.category .btn-edit {
+  padding: 0.6rem 0.8rem;
+  display: none;
+}
+
+.btn-edit.edit {
+  display: flex;
+}
+
+.btn-edit.submit {
+  background: #00ba1f;
+}
+
+.btn-edit.discard {
+  background: #ff9900;
+}
+
+.open .submit {
+  display: flex;
+}
+.open .discard {
+  display: flex;
+}
+
+.open .edit {
+  display: none;
+}
+
+.btn-edit .icon {
+  font-size: 2rem;
+  color: var(--col-ui);
+}
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #0000002f;
+  padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+}

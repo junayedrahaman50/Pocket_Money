@@ -1,7 +1,7 @@
 {
   "name": "pocket_money",
   "version": "1.0.0",
-  "description": "This app is responsible for managing day to day budget for users and peovide meaningful insights on their budget",
+  "description": "This app is responsible for managing day to day budget for users and provide meaningful insights on their budget",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

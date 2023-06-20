@@ -1,110 +1,98 @@
-const list = document.querySelectorAll(".f-list");
-const l0 = document.querySelector(".l-0");
-const l1 = document.querySelector(".l-1");
-const l2 = document.querySelector(".l-2");
-const l3 = document.querySelector(".l-3");
-const indicator = document.querySelector(".indicator");
+const navBtn = document.querySelectorAll(".navigation .navBtn");
+const indicator = document.querySelectorAll(".indicator");
+const page = document.querySelectorAll(".page");
 
-function activeLink() {
-  list.forEach((item) => {
-    item.classList.remove("active");
+// ////// Function For navigation /////////////////////
+// ////////////////////////////////////////////////////
+function navigate() {
+  navBtn.forEach((btn) => {
+    btn.classList.remove("active");
     this.classList.add("active");
   });
-  if (l0.classList.contains("active")) {
-    indicator.classList.add("p-0");
-    indicator.classList.remove("p-2");
-    indicator.classList.remove("p-3");
-    indicator.classList.remove("p-1");
-  }
-  if (l1.classList.contains("active")) {
-    indicator.classList.add("p-1");
-    indicator.classList.remove("p-2");
-    indicator.classList.remove("p-3");
-    indicator.classList.remove("p-0");
-  }
-  if (l2.classList.contains("active")) {
-    indicator.classList.add("p-2");
-    indicator.classList.remove("p-1");
-    indicator.classList.remove("p-3");
-    indicator.classList.remove("p-0");
-  }
-  if (l3.classList.contains("active")) {
-    indicator.classList.add("p-3");
-    indicator.classList.remove("p-2");
-    indicator.classList.remove("p-1");
-    indicator.classList.remove("p-0");
-  }
-}
 
-list.forEach((item) => item.addEventListener("click", activeLink));
-
-// ////////////// Dropdown list /////////////////////
-// //////////////////////////////////////////////////
-const search = document.querySelector(".cat-search");
-const catBox = document.querySelector(".bForm-box");
-
-// Array of categories. it has to be taken from database
-let categories = ["Salary", "Pocket money", "Real estate", "Business", "Rent"];
-const catList = document.querySelector(".cat-list");
-
-// Function to add categories /////////////////////
-function addCategory() {
-  categories.forEach((item) => {
-    let li = document.createElement("li");
-    li.textContent = item;
-
-    catList.appendChild(li);
-  });
-}
-addCategory();
-
-// Implementing search functionality /////////////////////
-search.addEventListener("keyup", function () {
-  const searchTerm = search.value.toLowerCase();
-  const listItem = document.querySelectorAll(".cat-list li");
-
-  if (searchTerm == "") {
-    listItem.forEach((item) => {
-      item.remove();
+  for (let i = 0; i < navBtn.length; i++) {
+    indicator.forEach((ind) => {
+      ind.classList.remove(`p-${i}`);
     });
+    page[i].style.display = `none`;
 
-    addCategory();
-    selectList();
+    if (navBtn[i] == this) {
+      indicator.forEach((ind) => {
+        ind.classList.add(`p-${i}`);
+        page[i].style.display = `flex`;
+      });
+    }
   }
+}
+navBtn.forEach((btn) => btn.addEventListener("click", navigate));
 
-  categories.forEach((category) => {
-    if (category.toLowerCase().startsWith(searchTerm) & (searchTerm != "")) {
-      const searchedArr = [];
-      searchedArr.push(category);
+// ///////// Function For edit budget ////////////////////
+// ///////////////////////////////////////////////////////
+const amountArray = [1300, 1400];
+const btnEdit = document.querySelectorAll(".budgetPage .edit");
+const btnSubmit = document.querySelectorAll(".budgetPage .submit");
+const btnDiscard = document.querySelectorAll(".budgetPage .discard");
+const inputField = document.querySelectorAll(".amountField");
 
-      listItem.forEach((item) => {
-        item.remove();
-      });
+// ///////////// Auto expand input field ////////////
+function autoExpand(x) {
+  let length = x.value.length;
+  if (length <= 4) {
+    x.style.width = `4rem`;
+  } else {
+    x.style.width = `${length}rem`;
+  }
+}
 
-      searchedArr.forEach((item) => {
-        let li = document.createElement("li");
-        li.textContent = item;
-        catList.appendChild(li);
-        selectList();
-      });
+// ///// Set value from array //////////////////
+function setInputValue() {
+  for (let i = 0; i < amountArray.length; i++) {
+    inputField[i].value = amountArray[i];
+    inputField[i].disabled = true;
+  }
+}
+setInputValue();
+
+// ///// Click event on edit button ////////////
+btnEdit.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    for (let i = 0; i < btnEdit.length; i++) {
+      if (btnEdit[i] == this) {
+        btnEdit[i].parentElement.classList.add("open");
+        inputField[i].removeAttribute("disabled");
+        inputField[i].focus();
+      }
     }
   });
 });
 
-search.addEventListener("click", function () {
-  catBox.classList.add("list-open");
-  search.placeholder = "Search";
+// ///// Click event on submit button ////////////
+btnSubmit.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    for (let i = 0; i < btnSubmit.length; i++) {
+      if (btnSubmit[i] == this) {
+        btnSubmit[i].parentElement.classList.remove("open");
+        amountArray[i] = inputField[i].value;
+        autoExpand(inputField[i]);
+        inputField[i].disabled = true;
+      }
+    }
+  });
 });
 
-// Function to close list and add text into search box
-function selectList() {
-  const listItem = document.querySelectorAll(".cat-list li");
-  listItem.forEach((item) => {
-    item.addEventListener("click", function () {
-      search.value = item.innerHTML;
-      catBox.classList.remove("list-open");
-      search.placeholder = "Category";
-    });
+// ///// Click event on discard button ////////////
+btnDiscard.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    for (let i = 0; i < btnDiscard.length; i++) {
+      if (btnDiscard[i] == this) {
+        btnDiscard[i].parentElement.classList.remove("open");
+        inputField[i].value = amountArray[i];
+        autoExpand(inputField[i]);
+        inputField[i].disabled = true;
+      }
+    }
   });
-}
-selectList();
+});
+
+// ///////// Function For add new budget ////////////////////
+// //////////////////////////////////////////////////////////

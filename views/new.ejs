@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Junayed Rahaman">
+<title>Pocket Money | Day to day budgeting application</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/register_style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+
+  <script src="js/jquery.min.js"></script>
+
+</head>
+<body>
+	<div class="img-style">  <!-- for background images -->   
+    
+	<div class="container">
+   <div class="row">
+   	<div class="col-lg-8 col-md-10 col-sm-12 col-centered" style="margin-top: 60px;">
+   		<div class="box">
+   			<div class="text-center mb-3">
+ 
+   				<span class="logo">Pocket Money</span>
+   			</div>	
+   			<!-- Login form start -->
+   			<div id="first">
+        <form action="/transaction" method="POST">
+            <div class="text-center mb-2">
+        	<p style="font-size: 16px;">Add Income or Expenses</p>
+        	</div>
+        	<div class="form-group">
+        		<input class="form-control" type="text" name="new[title]" placeholder="Title" value="" required>
+        	</div>        	
+        	<div class="form-group">
+        		<input class="form-control" type="number" name="new[amount]" placeholder="Amount" required>
+        	</div>        	
+        	<div class="form-group">
+                <textarea class="form-control" name="new[description]" placeholder="Description" maxlength="300" rows="3"></textarea>
+        	</div>        	
+        	<div class="form-group">
+        		<input class="form-control" type="text" name="new[category]" placeholder="E.g. Education, Grocery, Transportation" required>
+        	</div>        	
+        	<div class="form-group">
+                <select class="custom-select" name="new[action]" required>
+                    <option value="+">Income</option>
+                    <option value="-">Expenses</option>
+                  </select>
+        	</div>        	
+        	<div class="form-group">
+                <select class="custom-select" name="new[paymentMode]" required>
+                    <option value="online">Online</option>
+                    <option value="cash">Cash</option>
+                    <option value="bank">Bank</option>
+                  </select>
+        	</div>        	
+        	<div class="form-group">
+        		<input class="myBtn" type="submit" value="Submit">
+        	</div>
+
+        </form>
+        </div>
+
+    </div>
+
+   </div>
+</div>
+</div>
+</div>
+
+<!--scripts-->
+
+<script src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>

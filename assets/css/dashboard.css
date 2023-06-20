@@ -1,0 +1,207 @@
+/* //////////////////////////////////// */
+/* ////////// Home Page ////////// */
+/* //////////////////////////////////// */
+.dashboard {
+  position: relative;
+  transition: all 0.3s;
+}
+
+.dashboardCon {
+  overflow-y: scroll;
+  width: 36rem;
+  height: 100%;
+  padding: 1.6rem 1.6rem 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.addTrPage {
+  width: 100%;
+  height: 100%;
+  background: #ffffffe8;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.addBtn {
+  width: 6rem;
+  height: 6rem;
+  box-shadow: 0 3px 10px #00000030;
+  border-radius: 30%;
+  position: absolute;
+  right: 1.6rem;
+  bottom: 3rem;
+  background: var(--col-btn-1);
+}
+
+.dashboard .container {
+  padding: 1.2rem;
+  background: var(--col-ui);
+}
+
+.InfoCon {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 18rem;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.InfoCon .topCon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.InfoCon .bottomCon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bottomCon .cashCon,
+.bottomCon .bankCon {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.bottomCon .txtBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.bottomCon .iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background: #ffffff8f;
+}
+
+/* ///////////////////////////////////////////// */
+.hBudgetCon {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.hBudgetCon .budgetBox {
+  height: 5rem;
+  width: 100%;
+  position: relative;
+}
+
+.budgetBox .textBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.budgetBox .progressBar {
+  position: absolute;
+  left: 0;
+  width: 60%;
+  height: 100%;
+}
+
+.hBudgetCon .catBudgetBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.catBudgetBox .categoryBox {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.categoryBox .textBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.categoryBox .progressBox {
+  background: var(--col-ui);
+}
+
+.categoryBox .progressBar {
+  height: 1.2rem;
+  width: 65%;
+}
+
+/* ///////////////////////////////////////////// */
+.hSpendCon,
+.hEarnCon {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  gap: 1.6rem;
+}
+
+.hSpendCon .spendBox,
+.hEarnCon .earnBox {
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.spendBox .amount {
+  margin-left: auto;
+}
+
+.spendBox .iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: #00000034;
+}
+
+.spendBox .iconBox .icon-m {
+  color: #111;
+}
+
+.typeCon {
+  display: flex;
+  gap: 1.2rem;
+  /* padding: 1.6rem 1.2rem; */
+}
+
+.typeBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem;
+}
+
+.typeBox .box-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}

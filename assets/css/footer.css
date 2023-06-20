@@ -1,0 +1,145 @@
+/* //////////////////////////////////// */
+/* ////////// Footer Section ////////// */
+/* //////////////////////////////////// */
+.footer {
+  width: 36rem;
+  position: absolute;
+  bottom: 0;
+  background: var(--col-w1);
+}
+
+.footer::after {
+  content: "";
+  height: 3rem;
+  width: 100%;
+  background: linear-gradient(to top, #f6f8ff, #ffffff00);
+  position: absolute;
+  pointer-events: none;
+  top: -3rem;
+}
+
+.navigation {
+  height: 6rem;
+  width: 100%;
+}
+
+.navigation ul {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3rem;
+}
+
+.navigation .navBtn {
+  position: relative;
+  height: 100%;
+  width: 6rem;
+}
+
+.nav-link:is(:link, :visited) {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.footer-icon {
+  color: var(--col-bl);
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+}
+
+.text-f {
+  color: var(--col-bl);
+  position: absolute;
+  top: 50%;
+  transform: translateY(1rem);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.active .footer-icon {
+  top: 0;
+  color: var(--col-ui-2);
+}
+
+.active .text-f {
+  opacity: 1;
+  transform: translateY(0.4rem);
+}
+
+/* //////////////////////////////////// */
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 3rem;
+  height: 6rem;
+  width: 6rem;
+  background: #f6f8ff;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s;
+}
+
+.indicator-cir {
+  background: transparent;
+  position: absolute;
+}
+
+.indicator .circle {
+  height: 5rem;
+  width: 5rem;
+  background: var(--col-bl);
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+.indicator .left {
+  position: absolute;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: var(--col-w1);
+  top: 50%;
+  left: 0.99rem;
+  transform: translateX(-100%);
+  border-top-right-radius: 100%;
+  box-shadow: 0.1rem -1.9rem 0 0 #f6f8ff;
+}
+
+.indicator .right {
+  position: absolute;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: var(--col-w1);
+  top: 50%;
+  right: 0.99rem;
+  transform: translateX(100%);
+  border-top-left-radius: 100%;
+  box-shadow: -0.1rem -1.9rem 0 0 #f6f8ff;
+}
+
+/* //////////////////////////////////// */
+
+.p-1 {
+  transform: translate(calc(100% + 2rem), -50%);
+}
+.p-2 {
+  transform: translate(calc(200% + 4rem), -50%);
+}
+.p-3 {
+  transform: translate(calc(300% + 6rem), -50%);
+}

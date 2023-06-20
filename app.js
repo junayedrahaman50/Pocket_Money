@@ -1,82 +1,156 @@
 // required packages
-const express          = require('express'),
-      bodyParser       = require('body-parser'),
-      methdOverride    = require("method-override"),
-      mongoose         = require("mongoose"),
-      app              = express(); 
+const express = require("express"),
+  bodyParser = require("body-parser"),
+  methdOverride = require("method-override"),
+  mongoose = require("mongoose"),
+  app = express();
 
-// setting the view engine as ejs no nedd to provide .ejs extension
+// setting the view engine as ejs no need to provide .ejs extension
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static('assets'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("assets"));
 app.use(methdOverride("_method"));
 
-
 // Connecting to mongodb database using mongoose
-mongoose.connect("mongodb://127.0.0.1:27017/PocketMoneyDB", (err) =>{
-    if(err){
-        console.log("MongoDB is not connected");
-    }
-    else{
-        console.log("MongoDB is connected");
-    }
+mongoose.connect("mongodb://127.0.0.1:27017/PocketMoneyDB", (err) => {
+  if (err) {
+    console.log("MongoDB is not connected");
+  } else {
+    console.log("MongoDB is connected");
+  }
 });
+// Pattern/schema for each transaction (Note: DB is Schemaless and other data can be added)
 const transactionSchema = new mongoose.Schema({
-    name: String,
-	amount: Number,
-    action:String,
-    paymentMethod:String,
-    category:String,
-    username:String,
-    created: { type: Date, default: Date.now() }
+  title: String,
+  amount: Number,
+  description:String,
+  category:String,
+  action: String,
+  paymentMode: String,
+  username: String,
+  created: { type: Date, default: Date.now() }
 });
 
 const transactions = mongoose.model("transactions", transactionSchema);
 
-// let transaction = [];
-// redirect to /transaction
 app.get("/", (req, res) => {
-    // res.redirect("/transaction");
-    res.redirect("/register");
+  res.redirect("/register");
 });
 
-//user registration route
+// user registration route
 app.get("/register", (req, res) =>{
-    res.render("register");
+  res.render("register");
 })
 
-// main route
-app.get("/transaction", (req, res) => {
+// main route for calculating insights on user data
+app.get("/dashboard", (req, res) => {
+  transactions.find({}, (err, transactionData) => {
+    if (err) {
+      res.redirect("back");
+    } else {
+      res.render("mainDummy", { transactions: transactionData });
+    }
+  });
+});
 
-    transactions.find({}, (err, transactionData) =>{
+// Fetching all data with incomes and expense in transaction page
+app.get("/transaction", (req, res) => {
+  transactions.find({}, (err, transactionData) => {
+    if (err) {
+      res.redirect('back');
+    } else {
+      transactions.find({action:"+"}, (err, income) =>{
         if(err){
-            console.log(err);
+          res.redirect('back');
         }
         else{
-            res.render("transaction", {transactions:transactionData});
+          transactions.find({action:"-"}, (err, expense) =>{
+            if(err){
+              res.redirect('back');
+            }
+            else{
+              res.render("transaction", { transactions: transactionData, income:income, expense:expense  });
+            }
+          });
         }
-    });
+      });
+    }
+  });
 });
+
+// CRUD OPERATION STARTS HERE
+// New Route for adding transaction
+app.get("/transaction/new", (req, res) =>{
+  res.render("new");
+});
+
+
 
 // creating transaction
 app.post("/transaction", (req, res) => {
-transactions.create(req.body.new, (err, newOne) =>{
+  transactions.create(req.body.new, (err, newOne) => {
+    if (err) {
+      res.redirect("back");
+    } else {
+      res.redirect("/transaction");
+    }
+  });
+});
+
+//Show Route
+app.get("/transaction/:id", (req,res)=>{
+  transactions.findById(req.params.id, (err, singleTransaction) =>{
     if(err){
-        console.log(err);
+      res.redirect("back");
+    }else{
+      res.render("show", {sTransaction:singleTransaction});
+    }
+  });
+});
+
+// Edit Route
+app.get("/transaction/:id/edit", (req,res) =>{
+  transactions.findById(req.params.id, (err, foundTransaction) =>{
+    if(err){
+      res.redirect("back");
+    }else{
+      res.render("edit", {transaction:foundTransaction});
+    }
+  });
+});
+
+// Update Route
+app.put("/transaction/:id", (req, res)=>{
+  transactions.findByIdAndUpdate(req.params.id, req.body.updated, (err, updatedOne) => {
+    if(err){
+      res.redirect("back");
     }
     else{
-        console.log(newOne);
-        res.redirect("/transaction");
+      res.redirect("/transaction");
     }
-}); 
+  });
 });
 
-//catch all route
+// Delete Route
+app.delete("/transaction/:id", (req, res)=>{
+  // destroy transaction
+transactions.findByIdAndRemove(req.params.id, (err) =>{
+  // redirect somewhere
+  if(err){
+    res.redirect("back");
+  }
+  else{
+    res.redirect("/transaction")
+  }
+});
+});
+
+
+// catch all route (unspecified paths)
 app.get("*", (req, res) => {
-	res.send("This path does not exist");
+  res.render("404");
 });
 
-
-app.listen(1800 , function(){
-    console.log("Application started at port:1800");
+app.listen(1800,  () => {
+  console.log("Application started at port:1800");
 });

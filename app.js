@@ -3,6 +3,9 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   methdOverride = require("method-override"),
   mongoose = require("mongoose"),
+  User = require("./models/user"),
+  bcrypt = require("bcrypt"),
+  session = require("express-session"),
   app = express();
 
 // setting the view engine as ejs no need to provide .ejs extension
@@ -10,7 +13,21 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("assets"));
 app.use(methdOverride("_method"));
+app.use(session({secret: 'Keypad Cat', resave:false, saveUninitialized:false}));
 
+// Making username accessible globally
+app.use((req, res, next) =>{
+  res.locals.currentUser = req.session.username;
+  next();
+});
+
+// Login required middleware to protect our routes
+const requireLogin = (req, res, next) =>{
+  if(!req.session.user_id){
+    return res.redirect("/register");
+  }
+  next();
+}
 // Connecting to mongodb database using mongoose
 mongoose.connect("mongodb://127.0.0.1:27017/PocketMoneyDB", (err) => {
   if (err) {
@@ -21,6 +38,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/PocketMoneyDB", (err) => {
 });
 // Pattern/schema for each transaction (Note: DB is Schemaless and other data can be added)
 const transactionSchema = new mongoose.Schema({
+  username:String,
   title: String,
   amount: Number,
   description:String,
@@ -37,34 +55,90 @@ app.get("/", (req, res) => {
   res.redirect("/register");
 });
 
-// user registration route
+// Authentication Routes
 app.get("/register", (req, res) =>{
   res.render("register");
-})
-
-// main route for calculating insights on user data
-app.get("/dashboard", (req, res) => {
-  transactions.find({}, (err, transactionData) => {
-    if (err) {
-      res.redirect("back");
-    } else {
-      res.render("mainDummy", { transactions: transactionData });
-    }
-  });
 });
 
-// Fetching all data with incomes and expense in transaction page
-app.get("/transaction", (req, res) => {
-  transactions.find({}, (err, transactionData) => {
+app.post("/register", async (req, res) =>{
+  const {password, username} = req.body;
+  // Hashing(encrypt) password for secrity
+  const hash = await bcrypt.hash(password, 12);
+  const user = new User({
+    username,
+    password: hash
+  });
+  // Saving User to database
+  await user.save();
+  req.session.user_id = user._id;
+  req.session.username = user.username;
+  res.redirect("/transaction");
+});
+
+app.post("/login", async (req, res) =>{
+  const {username, password} = req.body;
+  const user = await User.findOne({ username });
+  // Bcrypt compares given password with hashed one and returns true or false
+  const validPassword = await bcrypt.compare(password, user.password);
+  if(validPassword){
+    req.session.user_id = user._id;
+    req.session.username = user.username;
+    res.redirect("/transaction");
+  } else {
+  res.redirect("/register");
+  }
+});
+
+app.post("/logout", (req, res) =>{
+  req.session.user_id = null;
+  req.session.username = null;
+
+  //req.session.destroy(); - destroies whole session
+  res.redirect("/register");
+});
+
+
+
+// main route for calculating insights on user data
+app.get("/dashboard", requireLogin, (req, res) => {
+  const userName = req.session.username;
+  transactions.find({username:userName}, (err, transactionData) => {
     if (err) {
       res.redirect('back');
     } else {
-      transactions.find({action:"+"}, (err, income) =>{
+      transactions.find({username:userName, action:"+"}, (err, income) =>{
         if(err){
           res.redirect('back');
         }
         else{
-          transactions.find({action:"-"}, (err, expense) =>{
+          transactions.find({username:userName, action:"-"}, (err, expense) =>{
+            if(err){
+              res.redirect('back');
+            }
+            else{
+              res.render("mainDummy", { transactions: transactionData, income:income, expense:expense  });
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
+
+// Fetching all data with incomes and expense in transaction page
+app.get("/transaction", requireLogin, (req, res) => {
+  const userName = req.session.username;
+  transactions.find({username:userName}, (err, transactionData) => {
+    if (err) {
+      res.redirect('back');
+    } else {
+      transactions.find({username:userName, action:"+"}, (err, income) =>{
+        if(err){
+          res.redirect('back');
+        }
+        else{
+          transactions.find({username:userName, action:"-"}, (err, expense) =>{
             if(err){
               res.redirect('back');
             }
@@ -87,7 +161,7 @@ app.get("/transaction/new", (req, res) =>{
 
 
 // creating transaction
-app.post("/transaction", (req, res) => {
+app.post("/transaction",requireLogin, (req, res) => {
   transactions.create(req.body.new, (err, newOne) => {
     if (err) {
       res.redirect("back");
@@ -120,7 +194,7 @@ app.get("/transaction/:id/edit", (req,res) =>{
 });
 
 // Update Route
-app.put("/transaction/:id", (req, res)=>{
+app.put("/transaction/:id", requireLogin, (req, res)=>{
   transactions.findByIdAndUpdate(req.params.id, req.body.updated, (err, updatedOne) => {
     if(err){
       res.redirect("back");
@@ -132,7 +206,7 @@ app.put("/transaction/:id", (req, res)=>{
 });
 
 // Delete Route
-app.delete("/transaction/:id", (req, res)=>{
+app.delete("/transaction/:id", requireLogin, (req, res)=>{
   // destroy transaction
 transactions.findByIdAndRemove(req.params.id, (err) =>{
   // redirect somewhere

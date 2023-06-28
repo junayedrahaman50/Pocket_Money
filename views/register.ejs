@@ -12,6 +12,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script src="js/jquery.min.js"></script>
 <script src="js/register.js"></script>
@@ -22,7 +23,7 @@
     
 	<div class="container">
    <div class="row">
-   	<div class="col-lg-8 col-md-10 col-sm-12 col-centered" style="margin-top: 60px;">
+   	<div class="col-lg-6 col-md-10 col-sm-12 col-centered" style="margin-top: 80px;">
    		<div class="box">
    			<div class="text-center mb-3">
  
@@ -30,15 +31,19 @@
    			</div>	
    			<!-- Login form start -->
    			<div id="first">
-        <form action="#" method="POST">
+        <form action="/login" method="POST">
+			<div class="text-center mb-2">
+				<p style="font-size: 16px;">Login to Pocket Money</p>
+				</div>
+
         	<div class="form-group">
-        		<input class="form-control" type="email" name="log_email" placeholder="Email Address" value="" required>
+        		<input class="form-control" type="text" name="username" placeholder="Username" required>
         	</div>        	
         	<div class="form-group">
-        		<input class="form-control" type="password" name="log_password" placeholder="Password">
+        		<input class="form-control" type="password" name="password" placeholder="Password" required>
         	</div>        	
         	<div class="form-group">
-        		<input class="myBtn" type="submit" name="login_button" value="Login">
+        		<button class="myBtn" type="submit"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
         		 <p class="error"></p>
         	</div>
         	<div class="text-center mb-2">
@@ -48,32 +53,22 @@
         </div>
          <!-- Register form start -->
          <div id="second">
-        <form action="#" method="POST">
-		<div class="form-group">
-		<input class="form-control" type="text" name="reg_fname" placeholder="First Name" value="" required>
-	    <p class="error"></p>
-		</div>
+        <form action="/register" method="POST">
+			<div class="text-center mb-2">
+				<p style="font-size: 16px;">Create an account</p>
+				</div>
+
 		<div class="form-group"> 
-		<input class="form-control" type="text" name="reg_lname" placeholder="Last Name" value="" required>
+		<input class="form-control" type="text" name="username" placeholder="Username" required>
 		 <p class="error"></p>
 		</div>		
 		<div class="form-group"> 
-		<input class="form-control" type="email" name="reg_email" placeholder="Email" value="" required>
+		<input class="form-control" type="password" name="password" placeholder="Password" required>
 		</div>		
-		<div class="form-group"> 
-		<input class="form-control" type="email" name="reg_email2" placeholder="Confirm Email" value="" required>
-		 <p class="error"></p>
-		</div>		
-		<div class="form-group"> 
-		<input class="form-control" type="password" name="reg_password" placeholder="Password" required>
-		</div>		
-		<div class="form-group"> 
-		<input class="form-control" type="password" name="reg_password2" placeholder="Confirm Password" required>
-		  <p class="error"></p>
-		</div>
+
         <div class="form-group">        
 
-        <input class="myBtn" type="submit" name="register_button" value="Register">
+        <button class="myBtn" type="submit"><i class="fa-solid fa-user-plus"></i> Sign Up</button>
         <p></p>
         </div>
         <div class="text-center mb-2">

@@ -53,8 +53,9 @@ body{
                                 <h5 class="card-title"><%= sTransaction.title %></h5>
                             <p class="card-text">Description: <%= sTransaction.description %></p>
                             <p class="card-text">Amount(Income/Expense): <%= sTransaction.action %><%= sTransaction.amount %></p>
-                            <p class="card-text">Payment Mode: <%= sTransaction.paymentMode %></p>
+                            <p style="text-transform: capitalize;" class="card-text">Payment Mode: <%= sTransaction.paymentMode %></p>
                             <p class="card-text">Date Created: <%= sTransaction.created %></p>
+                            <p class="card-text">By User: <%= currentUser %></p>
 
                             <a href="/transaction/<%=sTransaction._id%>/edit" class="btn btn-success btn-lg"><i class="fa-solid fa-file-pen"></i> Edit</a>
 
@@ -62,9 +63,6 @@ body{
             <button class="btn btn-danger btn-lg ml-2"><i class="fa-solid fa-trash"></i> Delete</button>
         </form>
 
-    <span class="text-muted" style="float: right;font-size: 14px;margin-top: 20px;">
-        <%= sTransaction.created.toString().substring(0,10); %>
-     </span>
                             </div>
                     </div>   
                 </div>

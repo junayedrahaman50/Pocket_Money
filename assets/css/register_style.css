@@ -15,22 +15,14 @@ box-shadow: none;
  .custom-select:focus{
   border: 2px solid #ced4da;
  }
-/* .img-style{
-  background: #333 url(../images/backgrounds/snow_tree.jpg) no-repeat center center/cover;
-  height: 100vh;
-} */
+
 
 .col-centered{
     float: none;
     margin: 0 auto;
 }
 
-/* .page-holder {
-  min-height: 100vh;
-}
-.bg-cover {
-  background-size: cover !important;
-} */
+
 
 .form-control{
   font-family: 'Poppins', sans-serif;
@@ -40,17 +32,15 @@ box-shadow: none;
 }
 body{
   background: url('../images/Pattern.png') top left repeat, #dae0e6;
-  /* font-family: 'Lexend', sans-serif;  */
+
   font-family: 'Poppins', sans-serif;
-  /* background: lightsteelblue; */
-  /* background: lightgray; */
-  /* background: #ece7fb; */
+
 }
 #signup, #signin{
 	font-size: 16px;
-	/* text-decoration: none; */
+
   text-decoration: underline;
-	/* color:#0f1419; */
+
   color: dodgerblue;
 }
 #second{
@@ -78,8 +68,9 @@ body{
    padding:10px 20px;
    font-size: 18px;
    display: inline-block;
-   background-color: lightseagreen;
-   /* background-color: #7146ed; */
+
+   background-color: dodgerblue;
+
    border:none !important;
    border-radius: 3px;
    text-align: center;
@@ -95,8 +86,9 @@ body{
 }
 .myBtn:hover{
   text-decoration: none;
-  background-color: lightskyblue;
-  /* background-color: #3f00fd; */
+
+  background-color: rgb(10, 86, 162);
+
 }
  
 .error{
@@ -105,8 +97,8 @@ body{
 }
 /* logo */
 .logo{
-  background-color: lightseagreen;
-  /* background-color: #7146ed; */
+  background-color: dodgerblue;
+
   color: #fff; 
   font-size:2rem;
   border-radius: 3px;
@@ -115,7 +107,7 @@ body{
   padding-bottom: 2px;
   padding-top: 2px; 
   user-select: none;
-  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+
 }
 
 /* media query for mobile devices */

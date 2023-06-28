@@ -12,6 +12,9 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 
   <script src="js/jquery.min.js"></script>
 
@@ -33,6 +36,9 @@
             <div class="text-center mb-2">
         	<p style="font-size: 16px;">Add Income or Expenses</p>
         	</div>
+        	<div class="form-group">
+				<input class="form-control" type="text" name="new[username]" value="<%=currentUser%>" readonly> </div>
+        	</div>        	
         	<div class="form-group">
         		<input class="form-control" type="text" name="new[title]" placeholder="Title" value="" required>
         	</div>        	
@@ -59,7 +65,8 @@
                   </select>
         	</div>        	
         	<div class="form-group">
-        		<input class="myBtn" type="submit" value="Submit">
+        		
+				<button class="myBtn" type="submit"><i class="fa-solid fa-square-check"></i> Submit</button>
         	</div>
 
         </form>

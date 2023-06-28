@@ -1,3 +1,25 @@
+<!-- calculating total income and expenses -->
+<!-- claculatiog paymentMode amounts -->
+<% let a = 0;
+ income.forEach((inc) => { 
+ a += inc.amount; 
+ }); 
+ let b = 0; 
+ expense.forEach((exp) => {
+ b += exp.amount; 
+ }); 
+ 
+ let online = 0, cash = 0, bank = 0;
+ transactions.forEach((transaction) =>{
+    if(transaction.paymentMode.toString() == 'online')
+        online += transaction.amount;
+    else if(transaction.paymentMode.toString() == 'bank')
+        bank += transaction.amount;
+    else if(transaction.paymentMode.toString() == 'cash')
+        cash += transaction.amount;
+ });
+ %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,8 +72,6 @@ body{
     padding: 20px;
     margin-top: 20px;
     box-shadow: 0 0 3px rgba(0,0,0,0.2); 
-    /* width: 60%;
-    margin: 0 auto; */
 }
 
 .col-lg-4 p{
@@ -114,6 +134,14 @@ color: dodgerblue;
     padding-right: 0px;
 }
 }
+
+.btn-primary{
+    font-size: 16px;
+    background-color: dodgerblue !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;border-radius: 3px !important;
+}
+.btn-primary:hover{
+    background-color: rgb(10, 86, 162) !important; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+}
     </style>
 </head>
 <body>
@@ -121,25 +149,26 @@ color: dodgerblue;
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-12 col-centered">
 <div class="box text-dark text-center">
-    <h4>Your Wealth: $100,000</h4>
-    <br>
-    <p>Cash: $30,000</p>
-    <p>Bank: $70,000</p>
+    <h2>Good Morning <%=currentUser%></h2>
+    <h5>Your Wealth: <%=a-b%></h5>
+    <a class="btn btn-primary btn-lg" href="/transaction"><i class="fa-solid fa-money-bill"></i> View Transactions</a>
+    <form class="d-inline ml-2" action="/logout" method="POST">
+    <button class="btn btn-primary btn-lg"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+</form>
 </div>
 <div class="box text-dark">
     <div class="tb-small">
     <p>Income </p>
     <p>Expenses </p>
-    <p>$40,000 </p>
-    <p>$30,000 </p>
+    <p><%=a%></p>
+    <p><%=b%></p>
 </div>
 </div>
-<!-- <div class="box text-dark"> -->
     <div class="container" style="margin-top: 20px;">
         <div class="row">
-            <div class="col-lg-4 col-md-4 paymode1"><p><i class="fa-solid fa-qrcode"></i> Online - $7,000</p></div>
-            <div class="col-lg-4 col-md-4 paymode2"><p><i class="fa-solid fa-money-bill"></i> Cash - $47,000</p></div>
-            <div class="col-lg-4 col-md-4 paymode3"><p><i class="fa-solid fa-building-columns"></i> From Bank - $9,000</p></div>
+            <div class="col-lg-4 col-md-4 paymode1"><p><i class="fa-solid fa-qrcode"></i> Online - <%=online%></p></div>
+            <div class="col-lg-4 col-md-4 paymode2"><p><i class="fa-solid fa-money-bill"></i> Cash -  <%=cash%></p></div>
+            <div class="col-lg-4 col-md-4 paymode3"><p><i class="fa-solid fa-building-columns"></i> From Bank - <%=bank%></p></div>
         </div>
     </div>
 

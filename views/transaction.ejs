@@ -1,8 +1,8 @@
-<% var a = 0;
+<% let a = 0;
  income.forEach((inc) => { 
  a += inc.amount; 
  }); 
- var b = 0; 
+ let b = 0; 
  expense.forEach((exp) => {
  b += exp.amount; 
  }); %>
@@ -59,9 +59,13 @@ body{
             <div class="row">
                 <div class="col-lg-10 col-md-10 col-sm-12 col-centered">
                     <div class="box text-dark text-center">
-                        <h2>Welcome Junayed Rahaman</h2>
+                        <h2>Welcome <%= currentUser%></h2>
                         <p class="lead my-3">Current Balance: <%= a - b %></p>
+                        <a class="btn btn-primary btn-lg mr-2" href="/dashboard"><i class="fa-solid fa-gauge"></i> View Dashboard</a>
                         <a class="btn btn-primary btn-lg" href="/transaction/new"><i class="fa-solid fa-square-plus"></i> Add Transaction</a>
+                        <form class="d-inline ml-2" action="/logout" method="POST">
+                            <button class="btn btn-primary btn-lg"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                        </form>
                     </div>
                     <% for(let i=transactions.length - 1;i>=0;i--) { %>
                     <div class="card my-3">
